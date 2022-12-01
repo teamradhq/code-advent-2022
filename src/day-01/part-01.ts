@@ -20,7 +20,7 @@ function extractElfBlocks(input: string): string[] {
  * @param sum
  * @param row
  */
-function sumItems(sum: number, row: string): number {
+export function sumItems(sum: number, row: string | number): number {
   return sum + Number(row);
 }
 
@@ -42,17 +42,25 @@ function reduceElfCalories(elf: string): number {
 export const elfCalories = extractElfBlocks(data)
   .map((elf) => reduceElfCalories(elf));
 
-let maxCalory = 0;
-export const log = [];
 
-elfCalories.forEach((calory, index) => {
-  if (calory > maxCalory) {
-    maxCalory = calory;
-    log.push({
-      i: elfCalories.indexOf(maxCalory),
-      v: maxCalory,
-    });
-  }
-});
+function main() {
+  const log = [];
+  let maxCalory = 0;
 
-console.log(maxCalory);
+  elfCalories.forEach((calory, index) => {
+    if (calory > maxCalory) {
+      maxCalory = calory;
+      log.push({
+        i: elfCalories.indexOf(maxCalory),
+        v: maxCalory,
+      });
+    }
+  });
+
+  console.log(maxCalory);
+}
+
+
+if (require.main === module) {
+  main();
+}
