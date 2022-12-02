@@ -1,9 +1,4 @@
-import * as fs from 'fs';
-import * as path from 'path';
-
-const inputFilepath = path.resolve(__dirname, './input.txt');
-const data = fs.readFileSync(inputFilepath, 'utf-8');
-
+import { getInput, sumItems } from '@src/lib';
 
 /**
  * The Elf data boundary is two new lines.
@@ -14,15 +9,6 @@ function extractElfBlocks(input: string): string[] {
   return input.split('\n\n');
 }
 
-/**
- * Add numeric value to the sum total.
- *
- * @param sum
- * @param row
- */
-export function sumItems(sum: number, row: string | number): number {
-  return sum + Number(row);
-}
 
 /**
  * An Elf's total calories is defined by the sum of each
@@ -36,14 +22,16 @@ function reduceElfCalories(elf: string): number {
   return calories.reduce(sumItems, 0);
 }
 
+const data = getInput(__dirname);
+
 /**
  * Serialise input data into calories.
  */
 export const elfCalories = extractElfBlocks(data)
   .map((elf) => reduceElfCalories(elf));
 
-
 function main() {
+
   const log = [];
   let maxCalory = 0;
 

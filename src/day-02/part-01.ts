@@ -1,6 +1,12 @@
-import * as fs from 'fs';
-import * as path from 'path';
+import { getInput } from '@src/lib';
 
-const inputFilepath = path.resolve(__dirname, './input.txt');
-const data = fs.readFileSync(inputFilepath, 'utf-8');
+function main() {
+  const data = getInput(__dirname);
 
+  console.log(data);
+}
+
+
+if (require.main === module) {
+  main();
+}

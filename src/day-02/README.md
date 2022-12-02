@@ -1,5 +1,5 @@
 # Day Two
 
-# Part One
+## Part One
 
 ## Part Two

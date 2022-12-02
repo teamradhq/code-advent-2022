@@ -1,5 +1,13 @@
-import { elfCalories, sumItems } from '@src/day-01/part-01';
+import { sumItems } from '@src/lib';
 
-const sorted = elfCalories.sort((a, b) => a <= b ? 1 : -1);
+import { elfCalories } from '@src/day-01/part-01';
 
-console.log(sorted.slice(0, 3).reduce(sumItems));
+function main() {
+  const sorted = elfCalories.sort((a, b) => a <= b ? 1 : -1);
+
+  console.log(sorted.slice(0, 3).reduce(sumItems));
+}
+
+if (require.main === module) {
+  main();
+}
