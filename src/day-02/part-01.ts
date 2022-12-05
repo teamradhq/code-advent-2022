@@ -61,6 +61,14 @@ type ScoreMemo = typeof scores;
 type ScoreResult = keyof ScoreMemo;
 type ScoreValue = ScoreMemo[ScoreResult];
 
+export function mapInput(input: string) {
+  return input.split('\n')
+    .filter(Boolean)
+    .map((row) => (
+      row.split(' ')
+    ));
+}
+
 function normaliseChoices(input: string) {
   return input.split('\n')
     .filter(Boolean)
