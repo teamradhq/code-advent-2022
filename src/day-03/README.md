@@ -56,3 +56,8 @@ To help prioritize item rearrangement, every item type can be converted to a pri
 
 Find the item type that appears in both compartments of each rucksack.
 What is the sum of the priorities of those item types?
+
+### Attempts
+
+- 8085
+- 21831 (High)
