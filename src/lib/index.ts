@@ -2,6 +2,8 @@ import path from 'path';
 import fs from 'fs';
 import util from 'util';
 
+export * as array from './array';
+
 export function getInput(dirname: string) {
   const inputFilepath = path.resolve(dirname, './input.txt');
 
