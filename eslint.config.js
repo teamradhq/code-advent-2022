@@ -19,7 +19,7 @@ const config = {
   rules: {
     'quote-props': ['error', 'as-needed'],
     'import/no-unresolved': 'off',
-    'no-console': 'warn',
+    'no-console': 'off',
     'no-debugger': 'warn',
     semi: 'error',
     'arrow-body-style': ['error', 'as-needed'],

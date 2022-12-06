@@ -63,4 +63,6 @@ In how many assignment pairs does one range fully contain the other?
 
 #### Attempts
 
-- 441
+- 441 (correct)
+- 491
+- 516
