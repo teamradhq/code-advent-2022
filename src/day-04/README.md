@@ -12,12 +12,15 @@ up and make a big list of the section assignments for each pair (your puzzle inp
 
 For example, consider the following list of section assignment pairs:
 
+```dotenv
 2-4,6-8
 2-3,4-5
 5-7,7-9
 2-8,3-7
 6-6,4-6
 2-6,4-8
+```
+
 For the first few pairs, this list means:
 
 Within the first pair of Elves, the first Elf was assigned sections 2-4 (sections 2, 3, and 4), while the
@@ -58,3 +61,6 @@ like the most in need of reconsideration. In this example, there are 2 such pair
 
 In how many assignment pairs does one range fully contain the other?
 
+#### Attempts
+
+- 441

@@ -38,6 +38,8 @@
     "day-02:2": "ts-node -r tsconfig-paths/register --files src/day-02/part-02.ts",
     "day-03:1": "ts-node -r tsconfig-paths/register --files src/day-03/part-01.ts",
     "day-03:2": "ts-node -r tsconfig-paths/register --files src/day-03/part-02.ts",
+    "day-04:1": "ts-node -r tsconfig-paths/register --files src/day-04/part-01.ts",
+    "day-04:2": "ts-node -r tsconfig-paths/register --files src/day-04/part-02.ts",
     "lint": "eslint ./src --fix --config ./eslint.config.js",
     "test": "jest --config jest.config.ts"
   },
