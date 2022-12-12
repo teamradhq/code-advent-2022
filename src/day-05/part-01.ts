@@ -1,18 +1,18 @@
 import { array, getInput, inspect } from '@src/lib';
 
 
-type Stack = string[][];
+export type Stack = string[][];
 
 /**
  * Representation of the stack as rows and columns with labels.
  */
-type StackData = {
+export type StackData = {
   rows: Stack;
   cols: Stack;
   labels: number[];
 };
 
-type MoveInstruction = Record<'move' | 'from' | 'to', number>;
+export type MoveInstruction = Record<'move' | 'from' | 'to', number>;
 
 const EMPTY_ROW = '---';
 
@@ -24,12 +24,11 @@ const EMPTY_ROW = '---';
 function splitRowToStack(row: string): string[] {
   return row.match(/.{1,4}/g)
     .map((item) => {
-      const result = item.trim().replace(/\[|\]/g, '');
+      const result = item.trim().replace(/[[\]]/g, '');
 
       return result || EMPTY_ROW;
     });
 }
-
 
 /**
  * Parse the stack from input data and return its rows and columns, with labels.
@@ -78,6 +77,15 @@ function prepareMovesList(input: string, splitIndex: number): MoveInstruction[] 
     });
 }
 
+export function prepare(input: string) {
+  const moveIndex = input.indexOf('move');
+
+  const { cols, labels } = prepareStackRows(input, moveIndex);
+  const moves = prepareMovesList(input, moveIndex);
+
+  return { moves, cols, labels };
+}
+
 /**
  * Move items from one stack to another one at a time.
  *
@@ -101,10 +109,8 @@ if (require.main === module) {
   console.log('Day 5 - Part 1');
 
   const data = getInput(__dirname);
-  const moveIndex = data.indexOf('move');
 
-  const { cols, labels } = prepareStackRows(data, moveIndex);
-  const moves = prepareMovesList(data, moveIndex);
+  const { moves, cols, labels } = prepare(data);
 
   for (const move of moves) {
     moveSingleItems(labels, cols, move);
