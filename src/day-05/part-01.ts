@@ -10,6 +10,8 @@ type StackData = {
   labels: number[];
 };
 
+type MoveInstruction = Record<'move' | 'from' | 'to', number>;
+
 const EMPTY_ROW = '---';
 
 function rotate<T>(array: T[][]): T[][] {
@@ -24,7 +26,7 @@ function rotate<T>(array: T[][]): T[][] {
 function splitRowToStack(row: string): string[] {
   return row.match(/.{1,4}/g)
     .map((item) => {
-      const result = item.trim();
+      const result = item.trim().replace(/\[|\]/g, '');
 
       return result || EMPTY_ROW;
     });
@@ -60,6 +62,12 @@ function fillArray(array: string[], max: number): string[] {
 }
 
 
+/**
+ * Parse the stack from input data and return its rows and columns, with labels.
+ *
+ * @param input
+ * @param splitIndex
+ */
 function prepareStackRows(input: string, splitIndex: number): StackData {
   const mapped = input.slice(0, splitIndex)
     .split('\n')
@@ -75,10 +83,32 @@ function prepareStackRows(input: string, splitIndex: number): StackData {
 
   const labels = rows.pop().map((label) => Number(label));
 
-  const cols = rotate(rows);
+  const cols = rotate(rows).map((col) => col.filter(val => val !== EMPTY_ROW));
 
   return { labels, cols, rows };
 }
+
+/**
+ *
+ * @param input
+ * @param splitIndex
+ */
+function prepareMovesList(input: string, splitIndex: number): MoveInstruction[] {
+  return input.slice(splitIndex)
+    .split('\n')
+    .filter(Boolean)
+    .map((row) => {
+      const {
+        move,
+        from,
+        to,
+      } = row.match(/move\s(?<move>\d+)\sfrom\s(?<from>\d+)\sto\s(?<to>\d+)/).groups;
+
+
+      return { move: Number(move), from: Number(from), to: Number(to) };
+    });
+}
+
 
 if (require.main === module) {
   console.log('Day 5 - Part 1');
@@ -88,9 +118,18 @@ if (require.main === module) {
 
   const { rows, cols, labels } = prepareStackRows(data, moveIndex);
 
-  const moves = data.slice(moveIndex).split('\n').filter(Boolean);
+  const doMove = ({ move, from, to }: MoveInstruction): void => {
+    const fromCol = cols[labels.indexOf(from)];
+    const toCol = cols[labels.indexOf(to)];
 
-  inspect(getMaxLength(rows));
+    while (move--) {
+      toCol.unshift(fromCol.shift());
+    }
+  };
+
+  const moves = prepareMovesList(data, moveIndex);
+
+  inspect('rows');
   inspect([
     [],
     ...rows,
@@ -98,17 +137,25 @@ if (require.main === module) {
   ]);
 
 
+  inspect('cols before');
   inspect([
     [],
     ...cols,
     [],
   ]);
 
+  for (const move of moves) {
+    doMove(move);
+  }
+
+  inspect('cols after');
   inspect([
     [],
-    ...labels,
+    ...cols,
     [],
   ]);
 
+  const result = cols.reduce((str, col) => str + col.shift(), '');
   inspect(cols[labels.indexOf(1)]);
+  inspect(result);
 }

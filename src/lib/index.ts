@@ -26,7 +26,7 @@ export function inspect(...items: unknown[]): void {
     const inspection = util.inspect(contents, {
       depth: 3,
       colors: true,
-      breakLength: 60,
+      breakLength: 180,
       compact: true,
     });
 

@@ -84,3 +84,8 @@ in stack 1, M in stack 2, and Z in stack 3, so you should combine these together
 message CMZ.
 
 After the rearrangement procedure completes, what crate ends up on top of each stack?
+
+### Attempts
+
+- `GVJCSJZPC` (incorrect)
+- `GFTNRBZPF` (correct)
