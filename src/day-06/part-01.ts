@@ -1,21 +1,20 @@
 import { getInput, inspect } from '@src/lib';
 
-const markerLength = 4;
-
 /**
  * Given the input, return the first set of non-repeating characters with a length of 4.
  *
  * @param input
+ * @param length
  */
-function findNonRepeatingCharacters(input: string): number {
+export function findNonRepeatingCharacters(input: string, length = 4): number {
   const characters = [...input];
 
   for (const [index] of characters.entries()) {
-    const sequence = characters.slice(index, index + markerLength);
+    const sequence = characters.slice(index, index + length);
     const unique = new Set(sequence);
 
-    if (unique.size === markerLength) {
-      return index + markerLength;
+    if (unique.size === length) {
+      return index + length;
     }
   }
 
