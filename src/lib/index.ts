@@ -30,3 +30,28 @@ export function inspect(contents: unknown): void {
 
   console.log(inspection);
 }
+
+/**
+ * Set the first and last elements as min and max.
+ *
+ * @param input
+ */
+export function toMinMax(input: number[]): MinMax {
+  const sorted = [...input];
+
+  const [min, max] = sorted;
+
+  return { min, max };
+}
+
+export function isInRange(input: number, { min, max }: MinMax): boolean {
+  return input >= min && input <= max;
+}
+
+export function isContainedIn(first: MinMax, second: MinMax): boolean {
+  return first.min >= second.min && first.max <= second.max;
+}
+
+export function isOverlapping([first, second]: [MinMax, MinMax]): boolean {
+  return isContainedIn(first, second) || isContainedIn(second, first);
+}

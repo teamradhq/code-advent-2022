@@ -22,6 +22,10 @@ export function intersect<T>(...arrays: T[][]): T[] {
   ));
 }
 
+export function isIntersecting(a: unknown[], b: unknown[]): boolean {
+  return intersect(a, b).length > 0;
+}
+
 export function batches<T>(input: T[], size = 3): T[][] {
   const batches = [];
 

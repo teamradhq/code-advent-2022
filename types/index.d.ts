@@ -11,3 +11,9 @@ declare namespace NodeJS {
     DEBUG?: 'true' | 'false' | '0' | '1';
   }
 }
+
+
+/**
+ * A record of a minimum and maximum value.
+ */
+type MinMax = Record<'min' | 'max', number>;
