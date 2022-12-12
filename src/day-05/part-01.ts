@@ -104,6 +104,10 @@ function moveSingleItems(labels: number[], cols: Stack, { move, from, to }: Move
   }
 }
 
+export function getTopItemsFromCols(cols: Stack): string {
+  return cols.reduce((str, col) => str + col.shift(), '');
+}
+
 
 if (require.main === module) {
   console.log('Day 5 - Part 1');
@@ -116,7 +120,7 @@ if (require.main === module) {
     moveSingleItems(labels, cols, move);
   }
 
-  const result = cols.reduce((str, col) => str + col.shift(), '');
+  const result = getTopItemsFromCols(cols);
 
   if (result !== 'GFTNRBZPF') {
     throw new RangeError('Result does not match expected value');
