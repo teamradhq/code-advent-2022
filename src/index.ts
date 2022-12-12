@@ -1,5 +1,17 @@
-/* eslint-disable no-console */
-import { config } from '@src/init';
+// import { execSync } from 'child_process';
+import { inspect } from '@src/lib';
 
-console.log('Hello Code Advent 2022!');
-console.log(config);
+inspect('Hello');
+//
+// const args = process.argv.filter((val) => val.startsWith('--'))
+//   .map((option) => {
+//     const [key, value] = option.split('=');
+//
+//     return [key.slice(2), Number(value)];
+//   });
+//
+// const options = Object.fromEntries(args);
+//
+// inspect({ options, args });
+//
+// execSync('npm run build', { stdio: 'inherit' });
