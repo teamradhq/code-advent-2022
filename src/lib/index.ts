@@ -20,15 +20,18 @@ export function sumItems(sum: number, row: string | number): number {
   return sum + Number(row);
 }
 
-export function inspect(contents: unknown): void {
-  const inspection = util.inspect(contents, {
-    depth: 3,
-    colors: true,
-    // breakLength: 60,
-    // compact: true,
-  });
+export function inspect(...items: unknown[]): void {
 
-  console.log(inspection);
+  for (const contents of items) {
+    const inspection = util.inspect(contents, {
+      depth: 3,
+      colors: true,
+      breakLength: 60,
+      compact: true,
+    });
+
+    console.log(inspection);
+  }
 }
 
 /**
