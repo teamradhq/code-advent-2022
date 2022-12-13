@@ -12,7 +12,9 @@ type File = Blob & { type: 'file' };
 class State {
   #currentWorkingDirectory = '/';
 
-  currentStep = 0;
+  readonly diskSize = 70000000;
+
+  readonly updateSize = 30000000;
 
   length = 0;
 
@@ -48,6 +50,20 @@ class State {
     }
 
     this.#currentWorkingDirectory = cwd.replace(/\/\//g, '/');
+  }
+
+  get freeSpace(): number {
+    const usedSpace = this.getDirectorySize('/');
+
+    return this.diskSize - usedSpace;
+  }
+
+  get spaceRequired(): number {
+    return this.updateSize - this.freeSpace;
+  }
+
+  get canUpdate(): boolean {
+    return this.spaceRequired < 0;
   }
 
   run() {
@@ -113,23 +129,31 @@ class State {
   }
 }
 
+export function prepareState(): State {
+  return new State(getInput(__dirname).split('\n').filter(Boolean));
+}
+
+const SIZE_LIMIT = 100000;
 
 if (require.main === module) {
   console.log('Day 5 - Part 1');
 
-  const data = getInput(__dirname).split('\n').filter(Boolean);
-  const state = new State(data);
-
-  const limit = 100000;
+  const state = prepareState();
   const sizes: number[] = [];
 
   for (const path of state.contents.keys()) {
     const size = state.getDirectorySize(path);
 
-    if (size <= limit) {
+    if (size <= SIZE_LIMIT) {
       sizes.push(size);
     }
   }
 
-  inspect(sizes.reduce(sumItems, 0));
+  const result = sizes.reduce(sumItems, 0);
+
+  if (result !== 1350966) {
+    throw new ReferenceError('Invalid result');
+  }
+
+  inspect(result);
 }
