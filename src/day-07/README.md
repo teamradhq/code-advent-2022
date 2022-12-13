@@ -111,3 +111,7 @@ example, this process can count files more than once!)
 Find all of the directories with a total size of at most 100000.
 
 What is the sum of the total sizes of those directories?
+
+### Attempts
+
+- `1350966` (correct)
