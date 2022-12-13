@@ -34,6 +34,21 @@ export function inspect(...items: unknown[]): void {
   }
 }
 
+class AssertionException extends Error {
+  constructor(message: string) {
+    super(message);
+  }
+}
+
+export function assertEquals(actual: unknown, expected: unknown, message = ''): void {
+  if (expected !== actual) {
+    throw new AssertionException(
+      message || `Expected ${expected} but got ${actual}`,
+    );
+  }
+}
+
+
 /**
  * Set the first and last elements as min and max.
  *

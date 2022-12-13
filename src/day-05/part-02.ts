@@ -1,4 +1,4 @@
-import { getInput, inspect } from '@src/lib';
+import { assertEquals, getInput, inspect } from '@src/lib';
 import { getTopItemsFromCols, prepare } from './part-01';
 import type { Stack, MoveInstruction } from './part-01';
 
@@ -23,9 +23,7 @@ if (require.main === module) {
 
   const result = getTopItemsFromCols(cols);
 
-  if (result !== 'VRQWPDSGP') {
-    throw new RangeError('Result does not match expected value');
-  }
+  assertEquals(result, 'VRQWPDSGP');
 
   inspect(result);
 }

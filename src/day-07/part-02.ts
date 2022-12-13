@@ -1,4 +1,4 @@
-import { inspect } from '@src/lib';
+import { assertEquals, inspect } from '@src/lib';
 import { prepareState } from './part-01';
 
 const DISK_SIZE = 70000000;
@@ -23,5 +23,9 @@ if (require.main === module) {
     }
   }
 
-  inspect(Math.min(...matches));
+  const result = Math.min(...matches);
+
+  assertEquals(result, 6296435);
+
+  inspect(result);
 }

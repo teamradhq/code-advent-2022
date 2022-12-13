@@ -1,4 +1,4 @@
-import { array, getInput, inspect } from '@src/lib';
+import { array, assertEquals, getInput, inspect } from '@src/lib';
 
 
 export type Stack = string[][];
@@ -122,9 +122,7 @@ if (require.main === module) {
 
   const result = getTopItemsFromCols(cols);
 
-  if (result !== 'GFTNRBZPF') {
-    throw new RangeError('Result does not match expected value');
-  }
+  assertEquals(result, 'GFTNRBZPF');
 
   inspect(result);
 }

@@ -1,4 +1,4 @@
-import { array, getInput, inspect, sumItems } from '@src/lib';
+import { array, assertEquals, getInput, inspect, sumItems } from '@src/lib';
 
 type Blob = {
   type: 'file' | 'directory';
@@ -151,9 +151,7 @@ if (require.main === module) {
 
   const result = sizes.reduce(sumItems, 0);
 
-  if (result !== 1350966) {
-    throw new ReferenceError('Invalid result');
-  }
+  assertEquals(result, 1350966);
 
   inspect(result);
 }
